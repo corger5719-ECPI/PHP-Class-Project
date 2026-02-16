@@ -31,7 +31,7 @@ if (!$result) {
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Catalog</title>
+    <title>Natural Root Hair Studio Catalog</title>
     <style>
         .card { border:1px solid #ccc; padding:12px; margin:10px 0; }
         .price { font-weight:bold; }
@@ -62,3 +62,4 @@ if (!$result) {
 
 </body>
 </html>
+
