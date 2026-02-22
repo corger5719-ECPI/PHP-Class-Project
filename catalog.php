@@ -1,5 +1,4 @@
 <?php
-// index.php (Catalog Page) - FULL WORKING STARTER (no MySQL needed)
 
 session_start();
 
@@ -12,13 +11,13 @@ if (!isset($_SESSION['cart']) || !is_array($_SESSION['cart'])) {
     $_SESSION['cart'] = [];
 }
 
-// Helper: safely get quantity from cart
+//  safely get quantity from cart
 function getCartQty(string $productId): int {
     $qty = $_SESSION['cart'][$productId] ?? 0;
     return is_numeric($qty) ? max(0, (int)$qty) : 0;
 }
 
-// Helper: set cart qty (never below 0)
+// set cart qty (never below 0)
 function setCartQty(string $productId, int $qty): void {
     $_SESSION['cart'][$productId] = max(0, $qty);
 }
