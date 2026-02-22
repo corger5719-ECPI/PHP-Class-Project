@@ -1,3 +1,4 @@
+
 <?php
 //Connect to Database
 $hostname = "localhost";
@@ -9,15 +10,15 @@ $conn = mysqli_connect($hostname, $username, $password, $dbname);
 session_start();
 
 // Load products array
-require_once __DIR__ . '/includes/products_data.php';
-$products = getProducts();
+require_once __DIR__ . '/products_db.php';
+$products = get_all_products();
 
 // Ensure cart exists
 if (!isset($_SESSION['cart']) || !is_array($_SESSION['cart'])) {
     $_SESSION['cart'] = [];
 }
 
-// Helpers
+//Cart Quantity
 function getCartQty(string $productId): int {
     $qty = $_SESSION['cart'][$productId] ?? 0;
     $qty = is_numeric($qty) ? (int)$qty : 0;
@@ -39,7 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($action === 'checkout') {
         // Clear cart and return to catalog page
         $_SESSION['cart'] = [];
-        header('Location: index.php');
+        header('Location: products_db.php');
         exit;
     }
 }
