@@ -3,7 +3,7 @@
 --
 
 CREATE TABLE `products` (
-  `ProductNo` int(11) NOT NULL,
+  `ProductNo` int(11) NOT NULL, Primary, Auto Increment,
   `ProductId` varchar(10) NOT NULL,
   `ProductName` varchar(50) NOT NULL,
   `ProductDescription` varchar(150) NOT NULL
