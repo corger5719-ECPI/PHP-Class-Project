@@ -3,7 +3,7 @@ echo "Natural Root Hair Studio under construction!";
 ?>
 
 <?php
-// index.php (Catalog Page) - FULL WORKING STARTER (no MySQL needed)
+// index.php (Catalog Page)
 
 session_start();
 
@@ -174,3 +174,4 @@ foreach ($_SESSION['cart'] as $id => $qty) {
 
 </body>
 </html>
+
