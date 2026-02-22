@@ -8,8 +8,7 @@ CREATE TABLE users (
   `UserId` varchar(15) NOT NULL,
   `LName` varchar(25) NOT NULL,
   `FName` varchar(25) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=geostd8 COLLATE=geostd8_bin;
-
+)
 --
 -- Dumping data for table `users`
 --
