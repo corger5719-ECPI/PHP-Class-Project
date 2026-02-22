@@ -3,8 +3,8 @@
 session_start();
 
 // 1) Load products array
-require_once __DIR__ . '/includes/products_data.php';
-$products = getProducts();
+require_once __DIR__ . '/products_data.php';
+$products = getproducts();
 
 // 2) Make sure cart exists
 if (!isset($_SESSION['cart']) || !is_array($_SESSION['cart'])) {
