@@ -1,10 +1,11 @@
 <?php
-$host = "localhost";
-$user = "root";
-$pass = "";          // XAMPP usually blank
-$db   = "natural Root Hair Studio"; // change to your DB name
+//Connect to Database
+$hostname = "localhost";
+$username = "ecpi_user";
+$password = "Password1";
+$dbname = "sdc310_classproject";
+$conn = mysqli_connect($hostname, $username, $password, $dbname);
 
-$conn = mysqli_connect($host, $user, $pass, $db);
 
 if (!$conn) {
     die("Database connection failed: " . mysqli_connect_error());
@@ -31,7 +32,7 @@ if (!$result) {
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Natural Root Hair Studio Catalog</title>
+    <title>Natural Root Hair Studio Catalog - Owner, Cora Germany</title>
     <style>
         .card { border:1px solid #ccc; padding:12px; margin:10px 0; }
         .price { font-weight:bold; }
@@ -62,4 +63,5 @@ if (!$result) {
 
 </body>
 </html>
+
 
