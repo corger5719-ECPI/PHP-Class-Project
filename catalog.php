@@ -4,7 +4,7 @@ session_start();
 
 // 1) Load products array
 require_once __DIR__ . '/products_data.php';
-$products = getproducts();
+$products = get_all_products();
 
 // 2) Make sure cart exists
 if (!isset($_SESSION['cart']) || !is_array($_SESSION['cart'])) {
@@ -108,19 +108,19 @@ foreach ($_SESSION['cart'] as $id => $qty) {
         </tr>
     </thead>
     <tbody>
-    <?php foreach ($products as $id => $p): ?>
+    <?php foreach ($products as $row): ?>
         <?php $qtyInCart = getCartQty($id); ?>
         <tr>
             <td><?= htmlspecialchars($id) ?></td>
-            <td><?= htmlspecialchars($p['name']) ?></td>
-            <td><?= htmlspecialchars($p['description']) ?></td>
-            <td class="price">$<?= number_format((float)$p['price'], 2) ?></td>
+            <td><?= htmlspecialchars($row['ProductName']) ?></td>
+            <td><?= htmlspecialchars($row['ProductDescription']) ?></td>
+            <td class="ProductCost">$<?= number_format((float)$row['ProductCost'], 2) ?></td>
             <td><?= $qtyInCart ?></td>
             <td>
                 <div class="actions">
                     <!-- Add -->
                     <form method="POST" style="margin:0;">
-                        <input type="hidden" name="product_id" value="<?= htmlspecialchars($id) ?>">
+                        <input type="hidden" name="ProductID" value="<?= htmlspecialchars($id) ?>">
                         <input type="hidden" name="action" value="add">
                         <button type="submit">Add</button>
                     </form>
