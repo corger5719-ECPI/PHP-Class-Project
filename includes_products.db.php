@@ -1,5 +1,6 @@
 <?php
 // includes/products_data.php
+
 function getProducts(): array {
     return [
         'NH001' => [
