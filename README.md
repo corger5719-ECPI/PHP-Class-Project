@@ -1,4 +1,4 @@
-# Project Name: MyWebapp - Final Exam Project 
+# Project Name: MyWebApp - Final Exam Project 
 
 ## Project Description
 
