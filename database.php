@@ -1,0 +1,11 @@
+<?php
+//Connect to Database
+$hostname = "localhost";
+$username = "ecpi_user";
+$password = "Password1";
+$dbname = "sdc310_classproject";
+$conn = mysqli_connect($hostname, $username, $password, $dbname);
+    
+   if(!$conn) {
+        die("DB connection failed: " . mysqli_connect_error());
+        }

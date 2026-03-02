@@ -1,15 +1,18 @@
 
 <?php
-    require_once __DIR__. '/database_php';
+    require_once __DIR__. '/database.php';
 
     //Get all entries in the product table
     function get_all_products() {
     global $conn;
 
     
-    $query = "SELECT * FROM products;
+   $sql = "SELECT * FROM products";
+   $result = mysqli_query($conn, $sql);
+      
+   if(!$result) {
+        die("Database query failed: " . mysqli_error($conn));
+        }
+            return $result;
 
-        $result = mysqli_query($conn, $query);
-
-    
-    return $result;
+    }
