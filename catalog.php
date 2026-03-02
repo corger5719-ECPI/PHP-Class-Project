@@ -1,10 +1,9 @@
 <?php
 
-session_start();
 
 // 1) Load products array
-require_once __DIR__ . '/products_data.php';
-$products = get_all_products();
+require_once __DIR__ . '/../includes/products_data.php';
+$products = getProducts();
 
 // 2) Make sure cart exists
 if (!isset($_SESSION['cart']) || !is_array($_SESSION['cart'])) {
@@ -55,7 +54,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     // Prevent form resubmission on refresh
-    header('Location: index.php');
+    header('Location: /sdc310_classproject/controller/cart_controller.php');
     exit;
 }
 
@@ -92,7 +91,7 @@ foreach ($_SESSION['cart'] as $id => $qty) {
         <div class="muted">Catalog Page (array-based products, session cart)</div>
     </div>
     <div class="nav">
-        <a href="cart.php">View Cart (<?= $cartItemCount ?>)</a>
+        <a href="../controller/cart_controller.php">View Cart</a>
     </div>
 </header>
 
@@ -108,61 +107,22 @@ foreach ($_SESSION['cart'] as $id => $qty) {
         </tr>
     </thead>
     <tbody>
-    <?php foreach ($products as $row): ?>
+    <?php foreach ($products as $id => $p): ?>
         <?php $qtyInCart = getCartQty($id); ?>
         <tr>
             <td><?= htmlspecialchars($id) ?></td>
-            <td><?= htmlspecialchars($row['ProductName']) ?></td>
-            <td><?= htmlspecialchars($row['ProductDescription']) ?></td>
-            <td class="ProductCost">$<?= number_format((float)$row['ProductCost'], 2) ?></td>
+            <td><?= htmlspecialchars($p['name']) ?></td>
+            <td><?= htmlspecialchars($p['description']) ?></td>
+            <td> $<?= number_format((float)$p['price'], 2) ?></td>
             <td><?= $qtyInCart ?></td>
             <td>
-                <div class="actions">
-                    <!-- Add -->
-                    <form method="POST" style="margin:0;">
-                        <input type="hidden" name="ProductID" value="<?= htmlspecialchars($id) ?>">
+                     <form method="post" action="../controller/cart_controller.php">   
                         <input type="hidden" name="action" value="add">
+                         <input type="hidden" name="product_id" value="<?= htmlspecialchars($id) ?>">
+                        
                         <button type="submit">Add</button>
                     </form>
-
-                    <!-- -1 -->
-                    <form method="POST" style="margin:0;">
-                        <input type="hidden" name="product_id" value="<?= htmlspecialchars($id) ?>">
-                        <input type="hidden" name="action" value="dec">
-                        <button type="submit">-</button>
-                    </form>
-
-                    <!-- +1 -->
-                    <form method="POST" style="margin:0;">
-                        <input type="hidden" name="product_id" value="<?= htmlspecialchars($id) ?>">
-                        <input type="hidden" name="action" value="inc">
-                        <button type="submit">+</button>
-                    </form>
-
-                    <!-- Remove -->
-                    <form method="POST" style="margin:0;">
-                        <input type="hidden" name="product_id" value="<?= htmlspecialchars($id) ?>">
-                        <input type="hidden" name="action" value="remove">
-                        <button type="submit">Remove</button>
-                    </form>
-
-                    <!-- Set Qty -->
-                    <form method="POST" style="margin:0; display:flex; gap:6px; align-items:center;">
-                        <input type="hidden" name="product_id" value="<?= htmlspecialchars($id) ?>">
-                        <input type="hidden" name="action" value="set">
-                        <input class="qtybox" type="number" name="qty" min="0" value="<?= $qtyInCart ?>">
-                        <button type="submit">Set Qty</button>
-                    </form>
-                </div>
-            </td>
-        </tr>
-    <?php endforeach; ?>
+    </td>
+    </tr>
+<?php endforeach; ?>
     </tbody>
-</table>
-
-<p class="muted" style="margin-top: 14px;">
-    Tip: This page uses <code>includes/products_data.php</code> (array) and stores the cart in <code>$_SESSION['cart']</code>.
-</p>
-
-</body>
-</html>
